@@ -1,58 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Example</title>
-    <link href='../assets/style.css' rel='stylesheet' type='text/css'>
+    <title>자기소개</title>
 </head>
 
 <body>
-    <header class="site-header">
-        <h1 class="site-title">Turtle Ipsumsdsdfdsfsdfsdsfd</h1>
-        <p class="site-subtitle">The World's Premier Turtle Fan Club</p>
-    </header>
+    <h1>자기소개</h1>
+    <div id="introduction"></div>
 
-    <nav class="main-nav" aria-label="Main navigation">
-        <h2 class="nav-header">Resources</h2>
-        <ul class="nav-list">
-            <li class="nav-item nav-item-bull"><a href="https://www.youtube.com/watch?v=CMNry4PE93Y">"I like
-                    turtles"</a></li>
-            <li class="nav-item nav-item-bull"><a href="https://en.wikipedia.org/wiki/Turtle">Basic Turtle Info</a></li>
-            <li class="nav-item nav-item-bull"><a href="https://en.wikipedia.org/wiki/Turtles_(chocolate)">Chocolate
-                    Turtles</a></li>
-        </ul>
-    </nav>
+    <script>
+        function introduceName() {
+            document.getElementById("introduction").innerText = "안녕! 내 이름은 장선이야!";
+        }
 
-    <main class="main-content">
-        <article>
-            <h2 class="page-title">Welcome to Turtle Ipsum. <a href="" aria-label="Learn more about Turtle Ipsum">Click
-                    here</a> to learn more.</h2>
-            <p class="article-text">
-                Turtle ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum
-            </p>
-            <img src="../assets/turtle.jpg" alt="A happy turtle" class="turtle-image">
-        </article>
-    </main>
+        // 두 번째 함수: 나이 소개
+        function introduceAge() {
+            document.getElementById("introduction").innerText = "난 26살이야!";
+        }
 
-    <footer class="footer">
-        <div class="footer-section">
-            <button class="button" aria-label="Sign up for turtle news">Sign up for turtle news</button>
-        </div>
-        <div class="footer-section">
-            <h2 class="nav-header footer-title">Internal Pages</h2>
-            <ul class="nav-list">
-                <li class="nav-item nav-item-bull"><a href="../">Index</a></li>
-                <li class="nav-item nav-item-bull"><a href="../semantic">Semantic Example</a></li>
-            </ul>
-        </div>
-        <p class="footer-copyright">&copy; 2016 Instrument</p>
-    </footer>
+        // 세 번째 함수: 취미 소개
+        function introduceHobby() {
+            document.getElementById("introduction").innerText = "취미는 볼링이랑 게임이야!";
+        }
+
+        // 네 번째 함수: 꿈 소개
+        function introduceDream() {
+            document.getElementById("introduction").innerText = "행복하게 사는게 꿈이야!";
+        }
+
+        // 3초마다 함수를 순차적으로 실행하는 로직
+        let counter = 0;
+        const introductionFunctions = [introduceName, introduceAge, introduceHobby, introduceDream];
+
+        setInterval(() => {
+            introductionFunctions[counter](); // 함수 호출
+            counter = (counter + 1) % introductionFunctions.length; // 다음 함수로 이동
+        }, 3000); // 3초마다 업데이트
+
+    </script>
 </body>
 
 </html>
