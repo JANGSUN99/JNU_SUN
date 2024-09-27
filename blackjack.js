@@ -38,6 +38,13 @@ function blackjackGame() {
 
     // 플레이어가 카드를 더 받을지 결정
     function askPlayer() {
+        // 플레이어가 21점 달성하면 블랙잭 승리
+        if (playerScore === 21) {
+            console.log("블랙잭! 플레이어 승리!");
+            rl.close();
+            return;
+        }
+
         if (playerScore < 21) {
             rl.question("카드를 더 받으시겠습니까? (y/n) ", (answer) => {
                 if (answer === 'y') {
@@ -51,30 +58,35 @@ function blackjackGame() {
                 }
             });
         } else {
+            // 플레이어가 21점을 초과하면 Bust
+            console.log("Bust! 플레이어 패배!");
             rl.close();
-            playDealer();
         }
     }
 
     // 딜러가 카드를 받는 로직
     function playDealer() {
+        console.log(`Dealer's cards: ${dealerHand}, Score: ${dealerScore}`);
+
+        // 딜러는 17점 이상이 될 때까지 카드를 받음
         while (dealerScore < 17) {
             dealerHand.push(getRandomCard());
             dealerScore = calculateScore(dealerHand);
+            console.log(`Dealer's cards: ${dealerHand}, Score: ${dealerScore}`);
         }
 
-        console.log(`Dealer's cards: ${dealerHand}, Score: ${dealerScore}`);
+        // 딜러가 21점을 초과하면 Bust
+        if (dealerScore > 21) {
+            console.log("Bust! 딜러 패배! 플레이어 승리!");
+            return;
+        }
 
-        // 최종 승패 판정
-        if (playerScore > 21) {
-            console.log("플레이어 패배! (점수 초과)");
-        } else if (dealerScore > 21) {
-            console.log("딜러 패배! (점수 초과) 플레이어 승리!");
-        } else if (playerScore > dealerScore) {
+        // 승패 판정
+        if (playerScore > dealerScore && playerScore <= 21) {
             console.log("플레이어 승리!");
-        } else if (playerScore < dealerScore) {
+        } else if (dealerScore > playerScore) {
             console.log("딜러 승리!");
-        } else {
+        } else if (dealerScore === playerScore) {
             console.log("무승부!");
         }
     }
